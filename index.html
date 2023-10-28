@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta http-equiv="X-UA-Compatible" content="ie=edge" />
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css"
+    />
+    <title>Novu Notification Center Iframe</title>
+  </head>
+  <body>
+    <div style="text-align: center;">
+      <div id="notification-bell">
+        <i class="fa fa-bell"></i>
+        <span id="unseen-badge"></span>
+      </div>
+    </div>
+  </body>
+
+  <script>
+    (function (n, o, t, i, f) {
+      n[i] = {};
+      var m = ["init", "on"];
+      n[i]._c = [];
+      m.forEach(
+        (me) =>
+          (n[i][me] = function () {
+            n[i]._c.push([me, arguments]);
+          })
+      );
+      var elt = o.createElement(f);
+      elt.type = "text/javascript";
+      elt.async = true;
+      elt.src = t;
+      var before = o.getElementsByTagName(f)[0];
+      before.parentNode.insertBefore(elt, before);
+    })(
+      window,
+      document,
+      "./embed.umd.min.js",
+      "novu",
+      "script"
+    );
+
+    const applicationId = "APPLICATION_ID";
+    const subscriberId = "SUBSCRIBER_ID";
+
+    novu.init(
+      applicationId,
+      {
+        unseenBadgeSelector: "#unseen-badge",
+        bellSelector: "#notification-bell"
+      },
+      {
+        subscriberId: subscriberId
+      }
+    );
+  </script>
+</html>
